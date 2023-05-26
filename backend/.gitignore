@@ -35,7 +35,7 @@ logs/
 
 # Other
 .env
-.env.*
+# .env.*
 .tmp/
 *.bak
 *.swp
