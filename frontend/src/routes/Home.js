@@ -44,6 +44,11 @@ const Home = () => {
                       src={require("../uploads/" + post.img)}
                       alt="img"
                       className="h-full object-cover"
+                      onError={(e) => {
+                        e.target.src =
+                          "https://i0.wp.com/thinkfirstcommunication.com/wp-content/uploads/2022/05/placeholder-1-1.png?fit=1200%2C800&ssl=1"; // Set the default image on error
+                        e.target.onerror = null; // Prevent infinite loop
+                      }}
                     />
                   )}
                   {/* <img
@@ -95,7 +100,7 @@ const sidebarItems = [
 
 const Sidebar = () => {
   return (
-    <div className="flex-[4] static top-0 max-w-[1300px] w-[90vw]">
+    <div className="flex-[4] sticky top-0 max-w-[1300px] w-[90vw]">
       <div className="flex flex-col pt-4">
         {sidebarItems.map((item, index) => (
           <Link

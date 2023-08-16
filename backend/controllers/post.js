@@ -7,9 +7,7 @@ export const getPosts = (req, res) => {
     : "SELECT * FROM posts";
 
   db.query(q, [req.query.cat], (err, data) => {
-    // console.log(data, err);
     if (err) return res.status(500).json(err);
-    console.log(data);
     return res.status(200).json(data);
   });
 };
@@ -43,11 +41,9 @@ export const addPost = (req, res) => {
       userInfo.id,
     ];
     db.query(q, [values], (err, data) => {
-      console.log(data, err);
       if (err) return res.status(500).json(err);
       // get the ID of newly created blog
       const blogId = data.insertId;
-      console.log(blogId);
       return res.json({ blogId: blogId });
     });
   });
@@ -85,6 +81,5 @@ export const updatePost = (req, res) => {
       if (err) return res.status(500).json(err);
       return res.json("Post has been updated!");
     });
-    console.log(req.body);
   });
 };
