@@ -1,8 +1,12 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import multer from "multer";
-import * as dotenv from "dotenv";
 import cors from "cors";
+
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+
+import * as dotenv from "dotenv";
 dotenv.config();
 
 import authRoutes from "./routes/auth.js";
@@ -24,7 +28,7 @@ const PORT = process.env.PORT || 8000;
 // Initialise Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../frontend/src/uploads");
+    cb(null, "./uploads");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -43,6 +47,10 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.listen(PORT, () => {
   console.log(`connected on port ${PORT}`);

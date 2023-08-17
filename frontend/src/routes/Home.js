@@ -41,14 +41,11 @@ const Home = () => {
                 <div className="flex-[1] relative">
                   {post.img && (
                     <img
-                      src={require("../uploads/" + post.img)}
+                      src={
+                        post.img && `http://localhost:8000/uploads/${post.img}`
+                      }
                       alt="img"
                       className="h-full object-cover"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://i0.wp.com/thinkfirstcommunication.com/wp-content/uploads/2022/05/placeholder-1-1.png?fit=1200%2C800&ssl=1"; // Set the default image on error
-                        e.target.onerror = null; // Prevent infinite loop
-                      }}
                     />
                   )}
                   {/* <img

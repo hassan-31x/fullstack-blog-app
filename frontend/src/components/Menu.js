@@ -32,7 +32,7 @@ const Menu = ({ cat, id }) => {
                 className="flex flex-col gap-2 rounded-md hover:drop-shadow-[5px_7px_29px_rgba(100,100,111,0.2)]  delay-200 py-3 px-4"
               >
                 <img
-                  src={post.img && require("../uploads/" + post.img)}
+                  src={post.img && `http://localhost:8000/uploads/${post.img}`}
                   alt="img"
                   className="border border-black w-full h-48 object-cover rounded-lg drop-shadow-[5px_5px_0px_rgba(0,0,0,1)] mb-4"
                 />

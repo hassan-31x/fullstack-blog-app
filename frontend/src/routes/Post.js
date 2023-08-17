@@ -51,19 +51,23 @@ const Post = () => {
       <div className="flex-[5] flex flex-col gap-4 border-r border-r-gray-500">
         <div className="content">
           <img
-            src={post.img && require("../uploads/" + post.img)}
+            src={post.img && `http://localhost:8000/uploads/${post.img}`}
             alt="Cover Photo"
             className="w-full h-96 object-contain mb-5 lg:mb-10"
           />
         </div>
 
         <div className="flex items-center gap-4">
-          {post?.userImg && (
+          {post?.userImg ? (
             <img
               src={post.userImg}
               alt=""
               className="w-[50px] h-[50px] rounded-full object-cover"
             />
+          ) : (
+            <div className="font-medium bg-green-400 rounded-full w-10 h-10 flex justify-center items-center">
+              {currentUser?.username.slice(0, 2).toUpperCase() || "MK"}
+            </div>
           )}
           <div className="info text-sm">
             <span className="font-bold leading-3">{post?.username}</span>
